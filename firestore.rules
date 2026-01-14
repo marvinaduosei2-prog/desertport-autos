@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Favorites - ANY SIGNED IN USER CAN MANAGE
+    match /favorites/{favoriteId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Garage - ANY SIGNED IN USER CAN MANAGE
+    match /garage/{garageId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Vehicles - PUBLIC READ, AUTHENTICATED WRITE
+    match /vehicles/{vehicleId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Categories - PUBLIC READ, AUTHENTICATED WRITE
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Site Config - PUBLIC READ, AUTHENTICATED WRITE
+    match /site_config/{configId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Spare Parts - PUBLIC READ, AUTHENTICATED WRITE
+    match /spareParts/{partId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Chat Sessions - OPEN FOR TESTING (Tighten in production)
+    match /chatSessions/{sessionId} {
+      allow read, write: if true;
+    }
+    
+    // Chat Messages - OPEN FOR TESTING (Tighten in production)
+    match /chatMessages/{messageId} {
+      allow read, write: if true;
+    }
+  }
+}
