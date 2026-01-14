@@ -11,6 +11,8 @@ import { db } from '@/lib/firebase/config';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { FavoriteButton } from '@/components/favorite-button';
+import { createInquiry } from '@/lib/actions';
+import { useAuthStore } from '@/stores/auth-store';
 
 interface Vehicle {
   id: string;
@@ -39,11 +41,13 @@ export default function VehicleDetailPage() {
   const params = useParams();
   const router = useRouter();
   const vehicleId = params.id as string;
+  const { user, userData } = useAuthStore();
   
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [submittingInquiry, setSubmittingInquiry] = useState(false);
   const [contactData, setContactData] = useState({
     name: '',
     email: '',
@@ -78,11 +82,53 @@ export default function VehicleDetailPage() {
     }
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Inquiry sent! We\'ll contact you soon.');
-    setShowContactForm(false);
-    setContactData({ name: '', email: '', phone: '', message: '' });
+    
+    if (!vehicle) {
+      toast.error('Vehicle information not loaded');
+      return;
+    }
+
+    setSubmittingInquiry(true);
+    console.log('📝 Submitting inquiry for vehicle:', vehicleId);
+
+    try {
+      const inquiryData = {
+        vehicleId: vehicle.id,
+        vehicleSnapshot: {
+          make: vehicle.brand,
+          model: vehicle.model,
+          year: vehicle.year,
+          price: vehicle.price,
+          thumbnailUrl: vehicle.images?.[0] || '',
+        },
+        name: contactData.name,
+        email: contactData.email,
+        phone: contactData.phone,
+        message: contactData.message,
+        userId: user?.uid || null,
+        source: user ? 'registered' : 'guest',
+      };
+
+      console.log('💾 Calling createInquiry with data:', inquiryData);
+      const result = await createInquiry(inquiryData);
+      console.log('📥 createInquiry result:', result);
+
+      if (result.success) {
+        toast.success('Inquiry sent successfully! We\'ll contact you soon.');
+        setShowContactForm(false);
+        setContactData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        console.error('❌ Inquiry failed:', result.error);
+        toast.error(result.error || 'Failed to send inquiry. Please try again.');
+      }
+    } catch (error) {
+      console.error('💥 Exception submitting inquiry:', error);
+      toast.error('Failed to send inquiry. Please try again.');
+    } finally {
+      setSubmittingInquiry(false);
+    }
   };
 
   const getStatusBadge = () => {
@@ -390,9 +436,10 @@ export default function VehicleDetailPage() {
                 />
                 <button
                   type="submit"
-                  className="w-full px-8 py-4 bg-lime-500 text-black font-black rounded-2xl hover:bg-lime-400 transition-all"
+                  disabled={submittingInquiry}
+                  className="w-full px-8 py-4 bg-lime-500 text-black font-black rounded-2xl hover:bg-lime-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  SEND MESSAGE
+                  {submittingInquiry ? 'SENDING...' : 'SEND MESSAGE'}
                 </button>
               </form>
             </motion.div>
