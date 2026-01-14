@@ -5,6 +5,38 @@ import { COLLECTIONS } from '@/lib/firebase/db';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
+// ==================== HELPER: Serialize Firestore Timestamps ====================
+
+function serializeTimestamps(obj: any): any {
+  if (obj === null || obj === undefined) {
+    return obj;
+  }
+
+  // Handle Firestore Timestamp objects
+  if (obj && typeof obj === 'object' && typeof obj.toDate === 'function') {
+    return obj.toDate().toISOString();
+  }
+
+  // Handle arrays
+  if (Array.isArray(obj)) {
+    return obj.map(item => serializeTimestamps(item));
+  }
+
+  // Handle plain objects
+  if (typeof obj === 'object' && obj.constructor === Object) {
+    const serialized: any = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        serialized[key] = serializeTimestamps(obj[key]);
+      }
+    }
+    return serialized;
+  }
+
+  // Return primitive values as-is
+  return obj;
+}
+
 // ==================== HELPER: Get Current User from Session ====================
 
 async function getCurrentUserFromSession() {
@@ -290,9 +322,7 @@ export async function getContactSubmissions() {
       const data = doc.data();
       return {
         id: doc.id,
-        ...data,
-        createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
-        updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+        ...serializeTimestamps(data),
       };
     });
 
@@ -354,7 +384,7 @@ export async function getInquiries() {
     const inquiries = await Promise.all(
       inquiriesSnapshot.docs.map(async (doc) => {
         const inquiry = doc.data();
-        console.log('📝 Processing inquiry:', doc.id, inquiry);
+        console.log('📝 Processing inquiry:', doc.id);
         
         // Get associated vehicle data
         let vehicleData: any = null;
@@ -365,10 +395,7 @@ export async function getInquiries() {
               const vData = vehicleDoc.data();
               vehicleData = {
                 id: vehicleDoc.id,
-                ...vData,
-                // Serialize any timestamps in vehicle data
-                createdAt: vData?.createdAt?.toDate?.() ? vData.createdAt.toDate().toISOString() : vData?.createdAt,
-                updatedAt: vData?.updatedAt?.toDate?.() ? vData.updatedAt.toDate().toISOString() : vData?.updatedAt,
+                ...serializeTimestamps(vData),
               };
             }
           } catch (e) {
@@ -376,12 +403,10 @@ export async function getInquiries() {
           }
         }
 
+        // Serialize the entire inquiry object (handles all nested timestamps)
         return {
           id: doc.id,
-          ...inquiry,
-          // Serialize timestamps
-          createdAt: inquiry.createdAt?.toDate?.() ? inquiry.createdAt.toDate().toISOString() : inquiry.createdAt,
-          updatedAt: inquiry.updatedAt?.toDate?.() ? inquiry.updatedAt.toDate().toISOString() : inquiry.updatedAt,
+          ...serializeTimestamps(inquiry),
           vehicle: vehicleData,
         };
       })
