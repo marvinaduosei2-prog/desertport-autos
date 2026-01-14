@@ -84,7 +84,8 @@ export default function ProfilePage() {
       <Navigation />
 
       <div className="pt-32 pb-20 px-6 lg:px-12 max-w-5xl mx-auto">
-        {/* Header */}
+        <div className="desktop-scale-80">
+          {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -235,6 +236,7 @@ export default function ProfilePage() {
             </div>
           </div>
         </motion.div>
+        </div>
       </div>
 
       <Footer />

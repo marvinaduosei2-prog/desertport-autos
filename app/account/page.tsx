@@ -97,8 +97,8 @@ export default function AccountPage() {
       <Navigation />
 
       <div className="pt-32 pb-20 px-6 lg:px-12 max-w-7xl mx-auto">
-        
-        {/* Email Verification Banner */}
+        <div className="desktop-scale-80">
+          {/* Email Verification Banner */}
         {!user.emailVerified && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -310,6 +310,7 @@ export default function AccountPage() {
             </Link>
           </motion.div>
         )}
+        </div>
       </div>
 
       <Footer />

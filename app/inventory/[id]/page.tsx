@@ -163,15 +163,18 @@ export default function VehicleDetailPage() {
       
       {/* Back Button */}
       <div className="pt-32 pb-8 px-6 lg:px-20 max-w-[2200px] mx-auto">
-        <Link href="/inventory" className="inline-flex items-center gap-2 text-gray-600 hover:text-lime-600 transition-colors font-medium">
+        <div className="desktop-scale-80">
+          <Link href="/inventory" className="inline-flex items-center gap-2 text-gray-600 hover:text-lime-600 transition-colors font-medium">
           <ArrowLeft className="w-5 h-5" />
           Back to Inventory
         </Link>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="px-6 lg:px-20 max-w-[2200px] mx-auto pb-20">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="desktop-scale-80">
+          <div className="grid lg:grid-cols-2 gap-12">
           {/* Left: Image Gallery */}
           <div className="space-y-4">
             {/* Main Image */}
@@ -370,6 +373,7 @@ export default function VehicleDetailPage() {
                 Learn more about shipping →
               </Link>
             </div>
+          </div>
           </div>
         </div>
       </div>
