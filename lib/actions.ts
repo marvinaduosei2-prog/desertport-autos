@@ -323,7 +323,7 @@ export async function getInquiries() {
         const inquiry = doc.data();
         
         // Get associated vehicle data
-        let vehicleData = null;
+        let vehicleData: any = null;
         if (inquiry.vehicleId) {
           try {
             const vehicleDoc = await adminDb.collection(COLLECTIONS.VEHICLES).doc(inquiry.vehicleId).get();
