@@ -19,9 +19,11 @@ export interface UserData {
   email: string;
   displayName: string | null;
   phoneNumber: string | null;
+  phone?: string; // Alternative phone field used in profile
   photoURL: string | null;
   role: UserRole;
   emailVerified: boolean;
+  location?: string; // User location
   createdAt: string; // ISO string
   updatedAt: string;
 }
