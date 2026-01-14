@@ -145,23 +145,23 @@ export function DynamicHero() {
       {/* Content */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 text-center px-6 w-full max-w-7xl mx-auto pt-20 md:pt-0"
+        className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen py-24 md:py-0"
       >
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-500/30 mb-8 bg-lime-500/10 backdrop-blur-xl"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-500/30 mb-6 md:mb-8 bg-lime-500/10 backdrop-blur-xl mx-auto"
         >
           <div className="w-2 h-2 bg-lime-500 rounded-full animate-pulse" />
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-lime-500">
+          <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-lime-500">
             PREMIUM AUTOMOTIVE
           </span>
         </motion.div>
 
         {/* Headline - Rotating */}
-        <div className="mb-8 h-[160px] md:h-[250px] lg:h-[300px] flex items-center justify-center">
+        <div className="mb-6 md:mb-8 min-h-[120px] md:min-h-[200px] lg:min-h-[250px] flex items-center justify-center">
           {isInitialized && headlines.length > 0 ? (
             <AnimatePresence mode="wait">
               <motion.h1

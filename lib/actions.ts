@@ -309,6 +309,50 @@ export async function updateContactStatus(id: string, status: string) {
   }
 }
 
+export async function getInquiries() {
+  try {
+    const user = await getCurrentUserFromSession();
+    if (!user || user.role !== 'admin') {
+      return { success: false, error: 'Unauthorized', data: [] };
+    }
+
+    // Get all inquiries
+    const inquiriesSnapshot = await adminDb.collection(COLLECTIONS.INQUIRIES).orderBy('createdAt', 'desc').get();
+    const inquiries = await Promise.all(
+      inquiriesSnapshot.docs.map(async (doc) => {
+        const inquiry = doc.data();
+        
+        // Get associated vehicle data
+        let vehicleData = null;
+        if (inquiry.vehicleId) {
+          try {
+            const vehicleDoc = await adminDb.collection(COLLECTIONS.VEHICLES).doc(inquiry.vehicleId).get();
+            if (vehicleDoc.exists) {
+              vehicleData = {
+                id: vehicleDoc.id,
+                ...vehicleDoc.data(),
+              };
+            }
+          } catch (e) {
+            console.error('Error fetching vehicle:', e);
+          }
+        }
+
+        return {
+          id: doc.id,
+          ...inquiry,
+          vehicle: vehicleData,
+        };
+      })
+    );
+
+    return { success: true, data: inquiries };
+  } catch (error: any) {
+    console.error('Get inquiries error:', error);
+    return { success: false, error: error.message, data: [] };
+  }
+}
+
 export async function updateInquiryStatus(id: string, status: string) {
   try {
     const user = await getCurrentUserFromSession();
