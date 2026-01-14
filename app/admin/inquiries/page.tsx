@@ -41,12 +41,21 @@ export default function InquiriesPage() {
   }, []);
 
   const loadInquiries = async () => {
+    console.log('🔄 Starting to load inquiries...');
     setLoading(true);
-    const result = await getInquiries();
-    if (result.success) {
-      setInquiries(result.data as Inquiry[]);
-    } else {
-      toast.error(result.error || 'Failed to load inquiries');
+    try {
+      const result = await getInquiries();
+      console.log('📥 Inquiry result:', result);
+      if (result.success) {
+        console.log('✅ Inquiries loaded successfully:', result.data.length, 'items');
+        setInquiries(result.data as Inquiry[]);
+      } else {
+        console.error('❌ Failed to load inquiries:', result.error);
+        toast.error(result.error || 'Failed to load inquiries');
+      }
+    } catch (error) {
+      console.error('💥 Exception loading inquiries:', error);
+      toast.error('Failed to load inquiries');
     }
     setLoading(false);
   };
