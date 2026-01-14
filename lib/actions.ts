@@ -1,6 +1,6 @@
 'use server';
 
-import { adminDb, adminAuth, setUserRole as setRole } from '@/lib/firebase/admin';
+import { adminDb, adminAuth, setUserRole as setRole, FieldValue } from '@/lib/firebase/admin';
 import { COLLECTIONS } from '@/lib/firebase/db';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
@@ -233,7 +233,7 @@ export async function createInquiry(data: any) {
     if (data.vehicleId) {
       console.log('📈 Incrementing vehicle inquiry count for:', data.vehicleId);
       await adminDb.collection(COLLECTIONS.VEHICLES).doc(data.vehicleId).update({
-        inquiries: (adminDb as any).FieldValue.increment(1),
+        inquiries: FieldValue.increment(1),
       });
     }
 

@@ -27,6 +27,7 @@ export const adminApp = initAdmin();
 export const adminAuth = admin.auth();
 export const adminDb = admin.firestore();
 export const adminStorage = admin.storage();
+export const FieldValue = admin.firestore.FieldValue;
 
 // Helper to verify ID tokens
 export async function verifyIdToken(token: string) {
