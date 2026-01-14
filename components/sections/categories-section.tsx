@@ -27,6 +27,10 @@ export function CategoriesSection() {
     link: cat.link || '/inventory'
   })) || [];
 
+  // Get heading and subheading from config
+  const heading = config?.categories?.heading || 'Premium Collections';
+  const subheading = config?.categories?.subheading || 'Explore our meticulously curated categories of the world\'s finest automobiles';
+
   // If no categories, show message to add them in admin
   if (categories.length === 0) {
     return (
@@ -66,9 +70,15 @@ export function CategoriesSection() {
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-black leading-[1.1] tracking-tighter lg:max-w-[50%] break-words"
+              className="text-5xl md:text-6xl lg:text-7xl font-black text-black leading-[1.1] tracking-tighter lg:max-w-[50%] break-words"
             >
-              Premium <span className="text-lime-600">Collections</span>
+              {heading.split(' ').map((word, index) => 
+                index === heading.split(' ').length - 1 ? (
+                  <span key={index} className="text-lime-600">{word}</span>
+                ) : (
+                  <span key={index}>{word} </span>
+                )
+              )}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, x: 50 }}
@@ -76,7 +86,7 @@ export function CategoriesSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-md font-light leading-relaxed lg:mt-2"
             >
-              Explore our meticulously curated categories of the world's finest automobiles
+              {subheading}
             </motion.p>
           </div>
         </motion.div>

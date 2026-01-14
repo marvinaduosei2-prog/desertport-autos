@@ -77,6 +77,8 @@ export default function CategoriesEditorPage() {
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [vehicleCounts, setVehicleCounts] = useState<Record<string, number>>({});
+  const [heading, setHeading] = useState('');
+  const [subheading, setSubheading] = useState('');
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -89,6 +91,14 @@ export default function CategoriesEditorPage() {
     fetchConfig();
     fetchVehicleCounts();
   }, [fetchConfig]);
+
+  useEffect(() => {
+    if (config?.categories) {
+      setHeading(config.categories.heading || 'Premium Collections');
+      setSubheading(config.categories.subheading || 'Explore our meticulously curated categories of the world\'s finest automobiles');
+      setCategories(config.categories.items || []);
+    }
+  }, [config]);
 
   const fetchVehicleCounts = async () => {
     try {
@@ -151,6 +161,8 @@ export default function CategoriesEditorPage() {
     try {
       const docRef = doc(db, 'site_config', 'main');
       await updateDoc(docRef, {
+        'categories.heading': heading,
+        'categories.subheading': subheading,
         'categories.items': categories,
       });
 
@@ -243,6 +255,43 @@ export default function CategoriesEditorPage() {
               <Save className="w-5 h-5" />
               {saving ? 'Saving...' : 'Save Order'}
             </button>
+          </div>
+        </div>
+
+        {/* Section Text Editor */}
+        <div className="p-6 bg-white/50 backdrop-blur-xl border border-gray-200 rounded-2xl space-y-6">
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Section Text</h3>
+            <p className="text-sm text-gray-500 mb-4">Customize the heading and description for the categories section</p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Heading
+              </label>
+              <input
+                type="text"
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
+                placeholder="Premium Collections"
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-500"
+              />
+              <p className="text-xs text-gray-500 mt-1">The last word will be highlighted in lime green</p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Subheading
+              </label>
+              <textarea
+                value={subheading}
+                onChange={(e) => setSubheading(e.target.value)}
+                placeholder="Explore our meticulously curated categories of the world's finest automobiles"
+                rows={3}
+                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-lime-500"
+              />
+            </div>
           </div>
         </div>
 

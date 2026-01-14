@@ -22,6 +22,8 @@ interface SiteConfig {
     stats?: Array<{ id: string; value: string; label: string }>;
   };
   categories?: {
+    heading?: string;
+    subheading?: string;
     items?: Array<any>;
   };
   testimonials?: {

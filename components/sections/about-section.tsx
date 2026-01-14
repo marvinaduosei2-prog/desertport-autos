@@ -98,7 +98,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section ref={ref} className="relative w-full overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white py-20 lg:py-28">
+    <section ref={ref} className="relative w-full overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white pt-12 pb-8 sm:pt-16 sm:pb-12 lg:py-28">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-lime-500/5 rounded-full blur-[120px]" />

@@ -28,6 +28,7 @@ export const COLLECTIONS = {
   USERS: 'users',
   VEHICLES: 'vehicles',
   INQUIRIES: 'inquiries',
+  CONTACTS: 'contact_submissions',
   GARAGE: 'garage',
   PURCHASES: 'purchases',
   TICKETS: 'support_tickets',
