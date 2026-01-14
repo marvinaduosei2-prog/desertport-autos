@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
@@ -31,7 +31,7 @@ interface Vehicle {
   description?: string;
 }
 
-export default function InventoryPage() {
+function InventoryPageContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
   
@@ -560,3 +560,15 @@ function VehicleCard({ vehicle, viewMode, index }: { vehicle: Vehicle; viewMode:
   );
 }
 
+
+export default function InventoryPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
+        <div className="text-white text-xl">Loading inventory...</div>
+      </div>
+    }>
+      <InventoryPageContent />
+    </Suspense>
+  );
+}
