@@ -170,12 +170,12 @@ export function DynamicHero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -50, scale: 0.9 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter text-center"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tighter text-center px-4"
               >
-                <span className="block text-white">
+                <span className="block text-white break-words">
                   {headlines[currentHeadlineIndex].split(' ')[0]}
                 </span>
-                <span className="block gradient-text neon-text">
+                <span className="block gradient-text neon-text break-words">
                   {headlines[currentHeadlineIndex].split(' ').slice(1).join(' ')}
                 </span>
               </motion.h1>
@@ -195,7 +195,7 @@ export function DynamicHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-light tracking-wide"
+            className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-400 mb-8 md:mb-12 max-w-2xl mx-auto font-light tracking-wide px-4"
           >
             {subheadline}
           </motion.p>
@@ -206,15 +206,15 @@ export function DynamicHero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex items-center justify-center gap-4 flex-wrap mb-20"
+          className="flex items-center justify-center gap-3 md:gap-4 flex-wrap mb-12 md:mb-20 px-4"
         >
           <Link href="/inventory">
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group px-10 py-5 rounded-full bg-lime-500 text-black text-base font-black uppercase tracking-wider shadow-2xl hover:shadow-lime-500/50 framer-smooth relative overflow-hidden"
+              className="group px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full bg-lime-500 text-black text-xs sm:text-sm md:text-base font-black uppercase tracking-wider shadow-2xl hover:shadow-lime-500/50 framer-smooth relative overflow-hidden"
             >
-              <span className="relative z-10 flex items-center gap-3">
+              <span className="relative z-10 flex items-center gap-2 md:gap-3">
                 <span>EXPLORE NOW</span>
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
@@ -230,7 +230,7 @@ export function DynamicHero() {
               onClick={() => setShowVideoModal(true)}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="px-10 py-5 rounded-full border-2 border-white/20 text-white text-base font-black uppercase tracking-wider backdrop-blur-sm hover:border-lime-500 hover:text-lime-500 framer-smooth"
+              className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full border-2 border-white/20 text-white text-xs sm:text-sm md:text-base font-black uppercase tracking-wider backdrop-blur-sm hover:border-lime-500 hover:text-lime-500 framer-smooth"
             >
               SHOWREEL
             </motion.button>
@@ -243,7 +243,7 @@ export function DynamicHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="flex items-center justify-center gap-16 md:gap-24 flex-wrap"
+            className="flex items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-24 flex-wrap px-4"
           >
             {heroStats.map((stat, index) => (
               <motion.div
@@ -258,11 +258,11 @@ export function DynamicHero() {
                     scale: [1, 1.05, 1],
                   }}
                   transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
-                  className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tight group-hover:text-lime-500 framer-smooth"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-2 tracking-tight group-hover:text-lime-500 framer-smooth"
                 >
                   {stat.value}
                 </motion.div>
-                <div className="text-xs text-gray-500 uppercase tracking-[0.3em] font-bold group-hover:text-lime-500 framer-smooth">
+                <div className="text-[8px] sm:text-[9px] md:text-xs text-gray-500 uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold group-hover:text-lime-500 framer-smooth">
                   {stat.label}
                 </div>
               </motion.div>

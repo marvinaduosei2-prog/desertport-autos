@@ -22,14 +22,14 @@ export function Footer() {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">
               <span className="text-lime-500">DESERT</span>PORT
             </h3>
-            <p className="text-gray-400 mb-6">
+            <p className="text-sm sm:text-base text-gray-400 mb-6">
               Curating automotive excellence for discerning clients worldwide.
             </p>
             <div className="flex gap-4">
@@ -50,8 +50,8 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base sm:text-lg font-bold mb-4">Quick Links</h4>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <li>
                 <Link href="/inventory" className="text-gray-400 hover:text-lime-500 transition">
                   Inventory
@@ -72,8 +72,8 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Services</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base sm:text-lg font-bold mb-4">Services</h4>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <li>
                 <Link href="/consignment" className="text-gray-400 hover:text-lime-500 transition">
                   Consignment
@@ -94,8 +94,8 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Contact</h4>
-            <ul className="space-y-4">
+            <h4 className="text-base sm:text-lg font-bold mb-4">Contact</h4>
+            <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base">
               <li className="flex items-start gap-3 text-gray-400">
                 <MapPin className="w-5 h-5 text-lime-500 flex-shrink-0 mt-1" />
                 <span>{contactAddress}</span>
@@ -120,12 +120,12 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-800">
+        <div className="pt-6 sm:pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
               © {currentYear} DesertPort Autos. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               <Link href="/privacy" className="text-gray-400 hover:text-lime-500 transition">
                 Privacy Policy
               </Link>

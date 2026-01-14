@@ -85,8 +85,8 @@ export function Navigation() {
             : 'bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md'
         }`}
       >
-        <div className="w-full px-6 lg:px-20 max-w-[2200px] mx-auto">
-          <div className="flex items-center justify-between h-20 lg:h-24">
+        <div className="w-full px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto">
+          <div className="flex items-center justify-between h-16 sm:h-18 md:h-20 lg:h-24">
             {/* Logo - FAR LEFT */}
             <AnimatePresence mode="wait">
               {!isOpen && (
@@ -125,7 +125,7 @@ export function Navigation() {
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-2xl font-black tracking-tighter text-white whitespace-nowrap"
+                            className="text-sm sm:text-lg md:text-xl lg:text-2xl font-black tracking-tighter text-white whitespace-nowrap"
                           >
                             DESERTPORT <span className="text-lime-500">AUTOS</span>
                           </motion.span>
@@ -147,7 +147,7 @@ export function Navigation() {
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.4, delay: 0.1 }}
-                          className="text-2xl font-black tracking-tighter text-white whitespace-nowrap"
+                          className="text-sm sm:text-lg md:text-xl lg:text-2xl font-black tracking-tighter text-white whitespace-nowrap"
                         >
                           DESERTPORT <span className="text-lime-500">AUTOS</span>
                         </motion.span>
