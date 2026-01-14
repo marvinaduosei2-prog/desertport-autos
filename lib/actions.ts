@@ -277,10 +277,15 @@ export async function getContactSubmissions() {
       .orderBy('createdAt', 'desc')
       .get();
 
-    const submissions = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const submissions = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt?.toDate?.() ? data.createdAt.toDate().toISOString() : data.createdAt,
+        updatedAt: data.updatedAt?.toDate?.() ? data.updatedAt.toDate().toISOString() : data.updatedAt,
+      };
+    });
 
     return { success: true, data: submissions };
   } catch (error: any) {
@@ -328,9 +333,13 @@ export async function getInquiries() {
           try {
             const vehicleDoc = await adminDb.collection(COLLECTIONS.VEHICLES).doc(inquiry.vehicleId).get();
             if (vehicleDoc.exists) {
+              const vData = vehicleDoc.data();
               vehicleData = {
                 id: vehicleDoc.id,
-                ...vehicleDoc.data(),
+                ...vData,
+                // Serialize any timestamps in vehicle data
+                createdAt: vData?.createdAt?.toDate?.() ? vData.createdAt.toDate().toISOString() : vData?.createdAt,
+                updatedAt: vData?.updatedAt?.toDate?.() ? vData.updatedAt.toDate().toISOString() : vData?.updatedAt,
               };
             }
           } catch (e) {
@@ -341,6 +350,9 @@ export async function getInquiries() {
         return {
           id: doc.id,
           ...inquiry,
+          // Serialize timestamps
+          createdAt: inquiry.createdAt?.toDate?.() ? inquiry.createdAt.toDate().toISOString() : inquiry.createdAt,
+          updatedAt: inquiry.updatedAt?.toDate?.() ? inquiry.updatedAt.toDate().toISOString() : inquiry.updatedAt,
           vehicle: vehicleData,
         };
       })
