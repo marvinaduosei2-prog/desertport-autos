@@ -68,7 +68,7 @@ export function CategoriesSection() {
         </motion.div>
 
         {/* 2 Rows x 3 Columns Grid - ULTRA WIDE FULL SCREEN Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 px-6 lg:px-20 max-w-[2200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto">
           {categories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -77,13 +77,13 @@ export function CategoriesSection() {
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
             >
               <Link href={category.link}>
-                <div className="group relative h-[600px] rounded-3xl overflow-hidden cursor-pointer">
+                <div className="group relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden cursor-pointer">
                   {/* Background Image */}
                   <div className="absolute inset-0">
                     <img
                       src={category.image}
                       alt={category.title}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-sm"
+                      className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-110 group-hover:blur-sm"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40" />
                   </div>
@@ -105,26 +105,26 @@ export function CategoriesSection() {
                   />
 
                   {/* Content */}
-                  <div className="relative h-full flex flex-col justify-between p-10 z-10">
+                  <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 lg:p-10 z-10">
                     <div className="flex items-end justify-end">
-                      <span className="text-white font-black px-5 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-xl text-base group-hover:bg-lime-500/20 group-hover:border-lime-500 group-hover:text-lime-500 framer-smooth">
+                      <span className="text-white font-black px-4 py-1.5 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-xl text-sm sm:text-base group-hover:bg-lime-500/20 group-hover:border-lime-500 group-hover:text-lime-500 framer-smooth">
                         {category.count}
                       </span>
                     </div>
 
-                    <div className="transform transition-transform duration-500 group-hover:translate-y-[-16px]">
-                      <h3 className="text-4xl lg:text-5xl font-black text-white mb-4 tracking-tighter group-hover:text-lime-500 framer-smooth">
+                    <div className="transform transition-transform duration-500 group-hover:translate-y-[-8px] sm:group-hover:translate-y-[-16px]">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white mb-3 sm:mb-4 tracking-tighter group-hover:text-lime-500 framer-smooth">
                         {category.title}
                       </h3>
-                      <p className="text-white/80 text-lg mb-6 font-light group-hover:text-lime-500/80 framer-smooth">
+                      <p className="text-white/80 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 font-light group-hover:text-lime-500/80 framer-smooth line-clamp-2">
                         {category.description}
                       </p>
-                      <div className="inline-flex items-center text-white font-black text-base uppercase tracking-wider group-hover:text-lime-500 framer-smooth">
+                      <div className="inline-flex items-center text-white font-black text-xs sm:text-sm lg:text-base uppercase tracking-wider group-hover:text-lime-500 framer-smooth">
                         <span>EXPLORE</span>
                         <motion.span
                           animate={{ x: [0, 8, 0] }}
                           transition={{ duration: 1.5, repeat: Infinity }}
-                          className="ml-3 text-2xl"
+                          className="ml-2 sm:ml-3 text-lg sm:text-2xl"
                         >
                           →
                         </motion.span>

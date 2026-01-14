@@ -103,34 +103,31 @@ export function DynamicHero() {
               loop
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect fill='%230a0a0a' width='1920' height='1080'/%3E%3C/svg%3E"
               onLoadedData={() => {
                 console.log('✅ Video loaded and ready');
                 setVideoLoaded(true);
               }}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              onCanPlay={() => {
+                setVideoLoaded(true);
+              }}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
                 videoLoaded ? 'opacity-50' : 'opacity-0'
               }`}
               style={{ objectFit: 'cover' }}
             >
-              {/* Only load the Firebase video - NO FALLBACKS */}
               <source src={heroVideoUrl} type="video/mp4" />
             </video>
           )}
           
           {/* Dark overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 pointer-events-none" />
           
-          {/* Fallback Background - Always there as backup */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-gray-900 to-black ${
+          {/* Clean Fallback Background - Solid color only */}
+          <div className={`absolute inset-0 bg-[#0a0a0a] ${
             videoLoaded ? 'opacity-0' : 'opacity-100'
-          } transition-opacity duration-1000`}>
-            <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: 'linear-gradient(rgba(132, 204, 22, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(132, 204, 22, 0.1) 1px, transparent 1px)',
-              backgroundSize: '100px 100px'
-            }} />
-          </div>
+          } transition-opacity duration-500 pointer-events-none`} />
         </motion.div>
       </div>
 
@@ -145,14 +142,14 @@ export function DynamicHero() {
       {/* Content */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen py-24 md:py-0"
+        className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen py-20 md:py-0"
       >
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-500/30 mb-6 md:mb-8 bg-lime-500/10 backdrop-blur-xl mx-auto"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-lime-500/30 mb-6 md:mb-8 bg-lime-500/10 backdrop-blur-xl mx-auto -mt-8 sm:-mt-0"
         >
           <div className="w-2 h-2 bg-lime-500 rounded-full animate-pulse" />
           <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-lime-500">
@@ -161,7 +158,7 @@ export function DynamicHero() {
         </motion.div>
 
         {/* Headline - Rotating */}
-        <div className="mb-6 md:mb-8 min-h-[120px] md:min-h-[200px] lg:min-h-[250px] flex items-center justify-center">
+        <div className="mb-6 md:mb-8 min-h-[120px] sm:min-h-[140px] md:min-h-[200px] lg:min-h-[250px] flex items-center justify-center">
           {isInitialized && headlines.length > 0 ? (
             <AnimatePresence mode="wait">
               <motion.h1
@@ -170,7 +167,7 @@ export function DynamicHero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -50, scale: 0.9 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tighter text-center px-4"
+                className="text-5xl [@media(min-width:430px)]:text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9] tracking-tighter text-center px-4"
               >
                 <span className="block text-white break-words">
                   {headlines[currentHeadlineIndex].split(' ')[0]}

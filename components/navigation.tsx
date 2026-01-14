@@ -132,16 +132,21 @@ export function Navigation() {
                         )}
                       </>
                     ) : (
-                      // Default D Icon + Text (always show when no logo or not initialized)
+                      // Default D Icon + Text (same size as logo to prevent shift)
                       <>
                         <motion.div
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
                           transition={{ duration: 0.4 }}
-                          whileHover={{ scale: 1.05 }}
-                          className="w-10 h-10 rounded-2xl bg-lime-500 flex items-center justify-center shadow-lg shadow-lime-500/30"
+                          className="h-10 lg:h-12 flex items-center"
+                          style={{ minWidth: '120px' }} // Same as logo container
                         >
-                          <span className="text-black font-black text-xl">D</span>
+                          <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-lime-500 flex items-center justify-center shadow-lg shadow-lime-500/30"
+                          >
+                            <span className="text-black font-black text-xl lg:text-2xl">D</span>
+                          </motion.div>
                         </motion.div>
                         <motion.span
                           initial={{ opacity: 0, x: -10 }}
