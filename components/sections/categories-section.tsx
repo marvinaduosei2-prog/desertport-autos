@@ -34,7 +34,7 @@ export function CategoriesSection() {
   // If no categories, show message to add them in admin
   if (categories.length === 0) {
     return (
-      <section className="relative py-32 px-0 overflow-hidden bg-gray-50 w-full">
+      <section className="relative py-12 sm:py-16 md:py-24 lg:py-8 px-0 overflow-hidden bg-gray-50 w-full">
         <div className="relative w-full px-6 lg:px-12 max-w-7xl mx-auto text-center">
           <p className="text-gray-500">No categories configured. Please add categories in the admin panel.</p>
         </div>
@@ -43,16 +43,15 @@ export function CategoriesSection() {
   }
 
   return (
-    <section ref={ref} className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-0 overflow-hidden bg-gray-50 w-full">
-      
-      <div className="relative w-full">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-8 sm:mb-12 md:mb-16 lg:mb-24 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto"
-        >
+    <section ref={ref} className="relative py-12 sm:py-16 md:py-24 lg:py-0 px-0 overflow-hidden bg-gray-50 w-full">
+      <div className="relative w-full desktop-scale-80">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="mb-8 sm:mb-12 md:mb-16 lg:mb-24 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto"
+          >
           {/* Tagline */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -89,10 +88,10 @@ export function CategoriesSection() {
               {subheading}
             </motion.p>
           </div>
-        </motion.div>
+          </motion.div>
 
-        {/* 2 Rows x 3 Columns Grid - ULTRA WIDE FULL SCREEN Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto">
+          {/* 2 Rows x 3 Columns Grid - ULTRA WIDE FULL SCREEN Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto">
           {categories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -162,7 +161,7 @@ export function CategoriesSection() {
               </Link>
             </motion.div>
           ))}
-        </div>
+          </div>
       </div>
     </section>
   );

@@ -22,7 +22,10 @@ export function Footer() {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      {/* Content wrapper with 80% scale - DESKTOP ONLY */}
+      <div className="flex items-center justify-center">
+        <div className="w-full desktop-scale-80">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Company Info */}
           <div>
@@ -136,6 +139,8 @@ export function Footer() {
                 Cookie Policy
               </Link>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>

@@ -55,9 +55,11 @@ export function ExperienceSection() {
         }} />
       </div>
       
-      <div className="relative w-full">
-        <div className="w-full px-6 lg:px-12 xl:px-16 max-w-[2000px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      {/* Content wrapper with 80% scale (20% smaller) - DESKTOP ONLY */}
+      <div className="relative w-full flex items-center justify-center">
+        <div className="w-full desktop-scale-80">
+          <div className="w-full px-6 lg:px-12 xl:px-16 max-w-[2000px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             {/* Left Side - Premium Image with Curves */}
             <motion.div
@@ -277,6 +279,7 @@ export function ExperienceSection() {
               </div>
             </motion.div>
           </div>
+        </div>
         </div>
       </div>
 

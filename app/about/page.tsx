@@ -23,7 +23,7 @@ export default function AboutPage() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto desktop-scale-80">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -76,7 +76,8 @@ function StatsSection() {
 
   return (
     <section ref={ref} className="py-24 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="desktop-scale-80">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
@@ -93,6 +94,7 @@ function StatsSection() {
             </p>
           </motion.div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -103,7 +105,8 @@ function OurStorySection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="desktop-scale-80">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
         {/* Left - Image */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -143,6 +146,7 @@ function OurStorySection() {
             </p>
           </div>
         </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -176,7 +180,8 @@ function CoreValuesSection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto bg-gray-50">
-      <div className="text-center mb-20">
+      <div className="desktop-scale-80">
+        <div className="text-center mb-20">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -215,6 +220,7 @@ function CoreValuesSection() {
             </p>
           </motion.div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -258,15 +264,16 @@ function WhyChooseUsSection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <div className="text-center mb-20">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tighter"
-        >
-          Why Choose <span className="text-lime-600">DesertPort</span>
-        </motion.h2>
+      <div className="desktop-scale-80">
+        <div className="text-center mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tighter"
+          >
+            Why Choose <span className="text-lime-600">DesertPort</span>
+          </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -299,6 +306,7 @@ function WhyChooseUsSection() {
             </div>
           </motion.div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -309,12 +317,13 @@ function CTASection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        className="bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-3xl p-16 text-center relative overflow-hidden"
-      >
+      <div className="desktop-scale-80">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-3xl p-16 text-center relative overflow-hidden"
+        >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -340,6 +349,7 @@ function CTASection() {
           </div>
         </div>
       </motion.div>
+      </div>
     </section>
   );
 }

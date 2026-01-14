@@ -19,7 +19,7 @@ export default function ConsignmentPage() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto desktop-scale-80">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,10 +56,11 @@ function BenefitsSection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tighter">
-          Why Choose Our <span className="text-lime-600">Consignment</span>
-        </h2>
+      <div className="desktop-scale-80">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tighter">
+            Why Choose Our <span className="text-lime-600">Consignment</span>
+          </h2>
         <p className="text-xl text-gray-600">The smart way to sell your premium vehicle</p>
       </div>
 
@@ -79,6 +80,7 @@ function BenefitsSection() {
             <p className="text-gray-600">{benefit.description}</p>
           </motion.div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -97,8 +99,9 @@ function ProcessSection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto bg-gray-50">
-      <div className="text-center mb-16">
-        <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tighter">
+      <div className="desktop-scale-80">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4 tracking-tighter">
           How It <span className="text-lime-600">Works</span>
         </h2>
         <p className="text-xl text-gray-600">Simple process, maximum results</p>
@@ -120,6 +123,7 @@ function ProcessSection() {
             <p className="text-gray-600 text-sm">{step.description}</p>
           </motion.div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -128,7 +132,8 @@ function ProcessSection() {
 function CTASection() {
   return (
     <section className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-16 text-center">
+      <div className="desktop-scale-80">
+        <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-16 text-center">
         <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
           Ready to <span className="text-lime-500">Consign</span>?
         </h2>
@@ -138,6 +143,7 @@ function CTASection() {
         <a href="/contact" className="inline-block px-8 py-4 bg-lime-500 text-black font-black rounded-2xl hover:bg-lime-400 transition-all">
           GET STARTED
         </a>
+        </div>
       </div>
     </section>
   );

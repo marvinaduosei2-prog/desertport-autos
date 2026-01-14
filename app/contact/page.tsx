@@ -76,7 +76,7 @@ export default function ContactPage() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto desktop-scale-80">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,8 @@ export default function ContactPage() {
 
       {/* Main Content - Form & Map */}
       <section className="py-16 px-6 lg:px-20 max-w-[2200px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="desktop-scale-80">
+          <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <ContactForm 
             formData={formData}
@@ -112,6 +113,7 @@ export default function ContactPage() {
 
           {/* Map & Additional Info */}
           <ContactSidebar mapLat={mapLat} mapLng={mapLng} />
+          </div>
         </div>
       </section>
 
@@ -166,7 +168,8 @@ function ContactInfoSection({ contactEmail, contactPhone, contactAddress }: {
 
   return (
     <section ref={ref} className="py-16 px-6 lg:px-20 max-w-[2200px] mx-auto">
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="desktop-scale-80">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {contactInfo.map((info, index) => (
           <motion.div
             key={index}
@@ -202,6 +205,7 @@ function ContactInfoSection({ contactEmail, contactPhone, contactAddress }: {
             )}
           </motion.div>
         ))}
+        </div>
       </div>
     </section>
   );
@@ -454,7 +458,8 @@ function FAQSection() {
 
   return (
     <section ref={ref} className="py-32 px-6 lg:px-20 max-w-[2200px] mx-auto bg-gray-50">
-      <div className="max-w-4xl mx-auto">
+      <div className="desktop-scale-80">
+        <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -500,6 +505,7 @@ function FAQSection() {
               )}
             </motion.div>
           ))}
+        </div>
         </div>
       </div>
     </section>

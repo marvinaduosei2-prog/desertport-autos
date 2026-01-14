@@ -192,7 +192,7 @@ function InventoryPageContent() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto desktop-scale-80">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -216,8 +216,9 @@ function InventoryPageContent() {
 
       {/* Main Content */}
       <section className="py-16 px-6 lg:px-20 max-w-[2200px] mx-auto">
-        {/* Search & Controls Bar */}
-        <div className="mb-8 space-y-4">
+        <div className="desktop-scale-80">
+          {/* Search & Controls Bar */}
+          <div className="mb-8 space-y-4">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
@@ -388,6 +389,7 @@ function InventoryPageContent() {
             ))}
           </div>
         )}
+        </div>
       </section>
 
       <Footer />

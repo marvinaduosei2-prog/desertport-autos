@@ -98,7 +98,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section ref={ref} className="relative w-full overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white pt-12 pb-8 sm:pt-16 sm:pb-12 lg:py-28">
+    <section ref={ref} className="relative w-full overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white pt-12 pb-8 sm:pt-16 sm:pb-12 lg:pt-16 lg:pb-2">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-lime-500/5 rounded-full blur-[120px]" />
@@ -113,8 +113,10 @@ export function AboutSection() {
         }} />
       </div>
 
-      <div className="relative w-full">
-        <div className="w-full px-6 lg:px-12 xl:px-16 max-w-[2000px] mx-auto">
+      {/* Content wrapper with 80% scale - DESKTOP ONLY */}
+      <div className="relative w-full flex items-center justify-center">
+        <div className="w-full desktop-scale-80">
+          <div className="w-full px-6 lg:px-12 xl:px-16 max-w-[2000px] mx-auto">
           
           {/* Header - Similar to Experience Section */}
           <div className="mb-16 lg:mb-20">
@@ -226,6 +228,7 @@ export function AboutSection() {
                 </motion.div>
               );
             })}
+          </div>
           </div>
         </div>
       </div>

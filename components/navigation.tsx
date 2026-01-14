@@ -85,8 +85,11 @@ export function Navigation() {
             : 'bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md'
         }`}
       >
-        <div className="w-full px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto">
-          <div className="flex items-center justify-between h-16 sm:h-18 md:h-20 lg:h-24">
+        {/* Content wrapper with 80% scale - DESKTOP ONLY */}
+        <div className="flex items-center justify-center">
+          <div className="w-full desktop-scale-80">
+            <div className="w-full px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto">
+              <div className="flex items-center justify-between h-16 sm:h-18 md:h-20 lg:h-24">
             {/* Logo - FAR LEFT */}
             <AnimatePresence mode="wait">
               {!isOpen && (
@@ -259,6 +262,8 @@ export function Navigation() {
               </motion.button>
             </div>
           </div>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -272,7 +277,10 @@ export function Navigation() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 bg-[#0a0a0a] z-[60] overflow-y-auto noise-texture"
           >
-            <div className="w-full px-6 lg:px-12 h-full flex flex-col items-center justify-center py-24">
+            {/* Content wrapper with 80% scale - DESKTOP ONLY */}
+            <div className="flex items-center justify-center h-full">
+              <div className="w-full desktop-scale-80">
+                <div className="w-full px-6 lg:px-12 h-full flex flex-col items-center justify-center py-24">
               {/* Menu Items */}
               <div className="flex flex-col items-center gap-6 mb-16">
                 {navItems.map((item, index) => (
@@ -398,6 +406,8 @@ export function Navigation() {
                   </div>
                 </div>
               </motion.div>
+            </div>
+              </div>
             </div>
           </motion.div>
         )}

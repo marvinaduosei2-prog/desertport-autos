@@ -139,11 +139,13 @@ export function DynamicHero() {
         }} />
       </div>
 
-      {/* Content */}
-      <motion.div 
-        style={{ opacity }}
-        className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto flex flex-col justify-center min-h-screen py-20 md:py-0"
-      >
+      {/* Content - Scaled to 80% and centered - DESKTOP ONLY */}
+      <div className="relative z-10 w-full flex items-center justify-center min-h-screen">
+        <div className="w-full desktop-scale-80">
+          <motion.div 
+            style={{ opacity }}
+            className="text-center px-4 w-full max-w-7xl mx-auto flex flex-col justify-center py-20 md:py-0"
+          >
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -266,7 +268,9 @@ export function DynamicHero() {
             ))}
           </motion.div>
         )}
-      </motion.div>
+          </motion.div>
+        </div>
+      </div>
 
       {/* Scroll Indicator */}
       <motion.div

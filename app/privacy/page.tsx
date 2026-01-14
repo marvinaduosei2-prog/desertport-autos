@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto desktop-scale-80">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,8 @@ export default function PrivacyPage() {
       </section>
 
       <section className="py-16 px-6 lg:px-20 max-w-[1200px] mx-auto">
-        <div className="prose prose-lg max-w-none">
+        <div className="desktop-scale-80">
+          <div className="prose prose-lg max-w-none">
           <div className="space-y-12">
             <Section title="Introduction">
               <p>
@@ -134,6 +135,7 @@ export default function PrivacyPage() {
                 Phone: +1 (234) 567-890
               </p>
             </Section>
+          </div>
           </div>
         </div>
       </section>
