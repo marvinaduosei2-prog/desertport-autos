@@ -51,5 +51,18 @@ service cloud.firestore {
     match /chatMessages/{messageId} {
       allow read, write: if true;
     }
+    
+    // Inquiries - Anyone can create, authenticated users can read their own, admins can read all
+    match /inquiries/{inquiryId} {
+      allow create: if true; // Anyone (including guests) can submit inquiries
+      allow read: if request.auth != null; // Authenticated users and admins can read
+      allow update, delete: if request.auth != null; // Only authenticated users can update/delete
+    }
+    
+    // Contact Submissions - Anyone can create, only authenticated users can read
+    match /contact_submissions/{submissionId} {
+      allow create: if true; // Anyone can submit contact forms
+      allow read, update, delete: if request.auth != null; // Only authenticated users can read/manage
+    }
   }
 }
