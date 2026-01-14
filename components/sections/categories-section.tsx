@@ -39,7 +39,7 @@ export function CategoriesSection() {
   }
 
   return (
-    <section ref={ref} className="relative py-32 px-0 overflow-hidden bg-gray-50 w-full">
+    <section ref={ref} className="relative py-12 sm:py-16 md:py-24 lg:py-32 px-0 overflow-hidden bg-gray-50 w-full">
       
       <div className="relative w-full">
         {/* Header */}
@@ -47,13 +47,13 @@ export function CategoriesSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-24 gap-12 lg:gap-20 px-6 lg:px-20 max-w-[2200px] mx-auto"
+          className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8 sm:mb-12 md:mb-16 lg:mb-24 gap-4 sm:gap-6 lg:gap-20 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto"
         >
           <motion.h2
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-black text-black leading-[1.1] tracking-tighter lg:max-w-[50%]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-black leading-[1.1] tracking-tighter lg:max-w-[50%] break-words"
           >
             Premium <span className="text-lime-600">Collections</span>
           </motion.h2>
@@ -61,7 +61,7 @@ export function CategoriesSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-gray-700 max-w-md font-light leading-relaxed lg:mt-2"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-md font-light leading-relaxed lg:mt-2"
           >
             Explore our meticulously curated categories of the world's finest automobiles
           </motion.p>
