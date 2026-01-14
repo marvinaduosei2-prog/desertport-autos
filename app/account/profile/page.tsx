@@ -31,9 +31,9 @@ export default function ProfilePage() {
 
     // Load profile data
     setProfile({
-      displayName: user.displayName || userData?.name || '',
+      displayName: user.displayName || userData?.displayName || '',
       email: user.email || '',
-      phone: userData?.phone || '',
+      phone: userData?.phoneNumber || '',
       location: userData?.location || '',
     });
   }, [user, userData, router]);
