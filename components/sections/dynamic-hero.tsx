@@ -145,7 +145,7 @@ export function DynamicHero() {
       {/* Content */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 text-center px-6 w-full max-w-7xl mx-auto"
+        className="relative z-10 text-center px-6 w-full max-w-7xl mx-auto pt-20 md:pt-0"
       >
         {/* Badge */}
         <motion.div
@@ -161,7 +161,7 @@ export function DynamicHero() {
         </motion.div>
 
         {/* Headline - Rotating */}
-        <div className="mb-8 h-[200px] md:h-[250px] lg:h-[300px] flex items-center justify-center">
+        <div className="mb-8 h-[160px] md:h-[250px] lg:h-[300px] flex items-center justify-center">
           {isInitialized && headlines.length > 0 ? (
             <AnimatePresence mode="wait">
               <motion.h1

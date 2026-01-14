@@ -175,19 +175,6 @@ export function FloatingVideoCard({
 
           {/* Control Buttons (Show on hover or on mobile) */}
           <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-            {/* Fullscreen Button (Mobile Only) */}
-            <button
-              onClick={toggleFullscreen}
-              className="md:hidden bg-black/60 backdrop-blur-sm rounded-full p-2 hover:bg-black/80 transition"
-              title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
-            >
-              {isFullscreen ? (
-                <Minimize2 className="w-4 h-4 text-white" />
-              ) : (
-                <Maximize2 className="w-4 h-4 text-white" />
-              )}
-            </button>
-            
             {/* Hide Button */}
             <button
               onClick={toggleHidden}

@@ -30,6 +30,14 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   overscroll-behavior-y: none; /* Prevent bounce on scroll */
+  /* iOS: Extend to edges with safe area */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+body {
+  /* Make sure body extends full height on iOS */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 body {

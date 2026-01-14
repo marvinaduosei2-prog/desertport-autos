@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { 
   LayoutDashboard, Car, Grid3x3, MessageSquare, 
   Settings, Image as ImageIcon, Palette, FileText,
-  LogOut, Menu, X, ChevronRight, Headphones, Mail
+  LogOut, Menu, X, ChevronRight, Headphones, Mail, FileQuestion
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -53,6 +53,11 @@ const menuItems = [
     title: 'Live Support',
     icon: Headphones,
     href: '/admin/support',
+  },
+  {
+    title: 'Inquiries',
+    icon: FileQuestion,
+    href: '/admin/inquiries',
   },
   {
     title: 'Contacts',

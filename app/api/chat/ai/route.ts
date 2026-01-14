@@ -97,12 +97,36 @@ function generateResponse(intent: string, userMessage: string): string {
 
 export async function POST(request: NextRequest) {
   try {
-    const { message, sessionId, context, userInfo } = await request.json();
+    // Parse request body with error handling for mobile
+    let body;
+    try {
+      body = await request.json();
+    } catch (parseError) {
+      console.error('Failed to parse request body:', parseError);
+      return NextResponse.json(
+        { error: 'Invalid request format' },
+        { 
+          status: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        }
+      );
+    }
+
+    const { message, sessionId, context, userInfo } = body;
 
     if (!message || !sessionId) {
       return NextResponse.json(
         { error: 'Message and sessionId are required' },
-        { status: 400 }
+        { 
+          status: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          }
+        }
       );
     }
 
