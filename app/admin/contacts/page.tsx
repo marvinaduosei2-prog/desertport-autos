@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { AdminDashboardLayout } from '@/components/admin/admin-dashboard-layout';
-import { Mail, Phone, Calendar, CheckCircle, Clock, Archive, MessageSquare } from 'lucide-react';
-import { getContactSubmissions, updateContactStatus } from '@/lib/actions';
+import { Mail, Phone, Calendar, CheckCircle, Clock, Archive, MessageSquare, Trash2 } from 'lucide-react';
+import { getContactSubmissions, updateContactStatus, deleteContactSubmission } from '@/lib/actions';
 import { toast } from 'sonner';
 import { formatDate } from '@/lib/utils';
 
@@ -46,6 +46,20 @@ export default function ContactSubmissionsPage() {
       loadSubmissions();
     } else {
       toast.error(result.error || 'Failed to update status');
+    }
+  };
+
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete the submission from ${name}? This action cannot be undone.`)) {
+      return;
+    }
+
+    const result = await deleteContactSubmission(id);
+    if (result.success) {
+      toast.success('Submission deleted successfully');
+      loadSubmissions();
+    } else {
+      toast.error(result.error || 'Failed to delete submission');
     }
   };
 
@@ -219,7 +233,7 @@ export default function ContactSubmissionsPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {submission.status !== 'new' && (
                     <button
                       onClick={() => handleStatusChange(submission.id, 'new')}
@@ -242,6 +256,15 @@ export default function ContactSubmissionsPage() {
                       className="px-4 py-2 bg-green-100 text-green-700 rounded-lg font-semibold hover:bg-green-200 transition"
                     >
                       Mark Completed
+                    </button>
+                  )}
+                  {submission.status === 'completed' && (
+                    <button
+                      onClick={() => handleDelete(submission.id, submission.name)}
+                      className="px-4 py-2 bg-red-100 text-red-700 rounded-lg font-semibold hover:bg-red-200 transition flex items-center gap-2"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Delete
                     </button>
                   )}
                 </div>

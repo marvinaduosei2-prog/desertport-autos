@@ -314,6 +314,23 @@ export async function updateContactStatus(id: string, status: string) {
   }
 }
 
+export async function deleteContactSubmission(id: string) {
+  try {
+    const user = await getCurrentUserFromSession();
+    if (!user || user.role !== 'admin') {
+      return { success: false, error: 'Unauthorized' };
+    }
+
+    await adminDb.collection('contact_submissions').doc(id).delete();
+
+    revalidatePath('/admin/contacts');
+    return { success: true };
+  } catch (error: any) {
+    console.error('Delete contact submission error:', error);
+    return { success: false, error: error.message };
+  }
+}
+
 export async function getInquiries() {
   try {
     const user = await getCurrentUserFromSession();
@@ -323,9 +340,12 @@ export async function getInquiries() {
 
     // Get all inquiries
     const inquiriesSnapshot = await adminDb.collection(COLLECTIONS.INQUIRIES).orderBy('createdAt', 'desc').get();
+    console.log('📊 Fetched inquiries count:', inquiriesSnapshot.docs.length);
+    
     const inquiries = await Promise.all(
       inquiriesSnapshot.docs.map(async (doc) => {
         const inquiry = doc.data();
+        console.log('📝 Processing inquiry:', doc.id, inquiry);
         
         // Get associated vehicle data
         let vehicleData: any = null;
@@ -358,9 +378,10 @@ export async function getInquiries() {
       })
     );
 
+    console.log('✅ Processed inquiries:', inquiries.length);
     return { success: true, data: inquiries };
   } catch (error: any) {
-    console.error('Get inquiries error:', error);
+    console.error('❌ Get inquiries error:', error);
     return { success: false, error: error.message, data: [] };
   }
 }
