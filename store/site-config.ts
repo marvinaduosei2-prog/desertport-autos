@@ -15,6 +15,7 @@ interface SiteConfig {
   };
   hero?: {
     videoUrl?: string;
+    floatingVideoUrl?: string;
     subheadline?: string;
     rotationSpeed?: number;
     headlines?: Array<{ id: string; text: string }>;

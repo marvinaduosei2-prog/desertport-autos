@@ -131,9 +131,9 @@ export async function getAllUsers() {
 
     const usersSnapshot = await adminDb.collection(COLLECTIONS.USERS).get();
     const users = usersSnapshot.docs.map(doc => ({
-      id: doc.id,
+      uid: doc.id,
       ...doc.data(),
-    }));
+    } as any));
 
     return { success: true, data: users };
   } catch (error: any) {

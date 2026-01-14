@@ -129,7 +129,7 @@ export function LayoutControls({ value, onChange }: LayoutControlsProps) {
             icon={<Monitor size={18} className="text-gray-600" />}
             label="Desktop"
             value={value.columns.desktop}
-            onChange={(v) => updateColumns('desktop', v)}
+            onChange={(v: number) => updateColumns('desktop', v)}
           />
           
           {/* Tablet */}
@@ -137,7 +137,7 @@ export function LayoutControls({ value, onChange }: LayoutControlsProps) {
             icon={<Tablet size={18} className="text-gray-600" />}
             label="Tablet"
             value={value.columns.tablet}
-            onChange={(v) => updateColumns('tablet', v)}
+            onChange={(v: number) => updateColumns('tablet', v)}
           />
           
           {/* Mobile */}
@@ -145,7 +145,7 @@ export function LayoutControls({ value, onChange }: LayoutControlsProps) {
             icon={<Smartphone size={18} className="text-gray-600" />}
             label="Mobile"
             value={value.columns.mobile}
-            onChange={(v) => updateColumns('mobile', v)}
+            onChange={(v: number) => updateColumns('mobile', v)}
           />
         </div>
       </div>

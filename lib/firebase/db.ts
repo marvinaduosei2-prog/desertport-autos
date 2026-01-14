@@ -88,7 +88,7 @@ export async function fetchCollection<T = DocumentData>(
     
     return querySnapshot.docs.map(doc => ({
       id: doc.id,
-      ...doc.data()
+      ...(doc.data() as any)
     })) as T[];
   } catch (error) {
     console.error(`Error fetching collection ${collectionName}:`, error);

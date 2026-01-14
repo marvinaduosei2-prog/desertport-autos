@@ -19,7 +19,6 @@ export function MouseTrail() {
   const counterRef = useRef(0);
 
   useEffect(() => {
-    let animationId: number;
     let lastTime = Date.now();
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -54,7 +53,6 @@ export function MouseTrail() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       clearInterval(cleanupInterval);
-      if (animationId) cancelAnimationFrame(animationId);
     };
   }, []);
 

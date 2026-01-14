@@ -24,12 +24,12 @@ export const useSiteConfigStore = create<SiteConfigState>((set) => ({
       const config = await fetchSiteConfig();
       
       if (config) {
-        const serializedConfig: SiteConfigData = {
+        const serializedConfig = {
           ...config,
           updatedAt: serializeTimestamp(config.updatedAt),
-        };
+        } as unknown as SiteConfigData;
         set({ config: serializedConfig, loading: false });
-      } else {
+      } else{
         set({ error: 'Failed to load site configuration', loading: false });
       }
     } catch (error: any) {

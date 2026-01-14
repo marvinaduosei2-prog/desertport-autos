@@ -1,17 +1,19 @@
 # Dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 
 # Testing
-/coverage
+coverage/
 
 # Next.js
-/.next/
-/out/
+.next/
+out/
+build/
+dist/
 
 # Production
-/build
+.vercel
 
 # Misc
 .DS_Store
@@ -22,19 +24,28 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Local env files
-.env*.local
+# Local env files (IMPORTANT - keeps your secrets safe)
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Vercel
-.vercel
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# TypeScript
-*.tsbuildinfo
-next-env.d.ts
+# Terminals folder
+.cursor/
 
 # Firebase
 .firebase/
 firebase-debug.log
 firestore-debug.log
 
+# Optional: Documentation files (if you don't want them on GitHub)
+*.md
+!README.md

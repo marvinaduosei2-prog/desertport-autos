@@ -32,12 +32,13 @@ const LETTER_SPACINGS = ['-0.05em', '-0.03em', '-0.02em', '-0.01em', '0', '0.01e
 
 export function TypographyControls({ value, onChange }: TypographyControlsProps) {
   const updateField = (category: string, field: string, newValue: string) => {
+    const categoryValue = value[category as keyof typeof value];
     onChange({
       ...value,
-      [category]: typeof value[category as keyof typeof value] === 'object'
-        ? { ...value[category as keyof typeof value], [field]: newValue }
+      [category]: typeof categoryValue === 'object' && categoryValue !== null
+        ? { ...(categoryValue as any), [field]: newValue }
         : newValue,
-    });
+    } as any);
   };
 
   return (
