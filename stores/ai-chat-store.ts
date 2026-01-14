@@ -101,6 +101,10 @@ export const useAIChatStore = create<AIChatState>((set, get) => ({
         }),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       if (data.error) {
@@ -126,9 +130,19 @@ export const useAIChatStore = create<AIChatState>((set, get) => ({
       if (data.status && data.status !== state.status) {
         set({ status: data.status });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Send message error:', error);
-      state.addMessage('system', 'Sorry, I encountered an error. Please try again.');
+      let errorMessage = 'Sorry, I encountered an error. ';
+      
+      if (error.message?.includes('Failed to fetch') || error.message?.includes('Network')) {
+        errorMessage += 'Please check your internet connection and try again.';
+      } else if (error.message?.includes('HTTP error')) {
+        errorMessage += 'Our chat service is temporarily unavailable. Please try again in a moment.';
+      } else {
+        errorMessage += 'Please try again or refresh the page.';
+      }
+      
+      state.addMessage('system', errorMessage);
     } finally {
       set({ loading: false });
     }

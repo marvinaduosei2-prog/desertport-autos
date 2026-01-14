@@ -238,6 +238,77 @@ export async function createInquiry(data: any) {
   }
 }
 
+// ==================== CONTACT SUBMISSIONS ====================
+
+export async function createContactSubmission(data: any) {
+  try {
+    const submissionData = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      subject: data.subject,
+      message: data.message,
+      preferredContact: data.preferredContact || 'email',
+      status: 'new',
+      source: 'contact_form',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    const docRef = await adminDb.collection('contact_submissions').add(submissionData);
+
+    revalidatePath('/admin/contacts');
+    return { success: true, id: docRef.id };
+  } catch (error: any) {
+    console.error('Create contact submission error:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function getContactSubmissions() {
+  try {
+    const user = await getCurrentUserFromSession();
+    if (!user || user.role !== 'admin') {
+      return { success: false, error: 'Unauthorized', data: [] };
+    }
+
+    const snapshot = await adminDb
+      .collection('contact_submissions')
+      .orderBy('createdAt', 'desc')
+      .get();
+
+    const submissions = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return { success: true, data: submissions };
+  } catch (error: any) {
+    console.error('Get contact submissions error:', error);
+    return { success: false, error: error.message, data: [] };
+  }
+}
+
+export async function updateContactStatus(id: string, status: string) {
+  try {
+    const user = await getCurrentUserFromSession();
+    if (!user || user.role !== 'admin') {
+      return { success: false, error: 'Unauthorized' };
+    }
+
+    await adminDb.collection('contact_submissions').doc(id).update({
+      status,
+      updatedAt: new Date(),
+    });
+
+    revalidatePath('/admin/contacts');
+    return { success: true };
+  } catch (error: any) {
+    console.error('Update contact status error:', error);
+    return { success: false, error: error.message };
+  }
+}
+
 export async function updateInquiryStatus(id: string, status: string) {
   try {
     const user = await getCurrentUserFromSession();
