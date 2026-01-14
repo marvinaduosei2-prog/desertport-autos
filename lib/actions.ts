@@ -215,6 +215,8 @@ export async function deleteVehicle(id: string) {
 
 export async function createInquiry(data: any) {
   try {
+    console.log('📝 Creating inquiry with data:', data);
+    
     const inquiryData = {
       ...data,
       status: 'new',
@@ -223,17 +225,24 @@ export async function createInquiry(data: any) {
       updatedAt: new Date(),
     };
 
+    console.log('💾 Saving to Firestore collection:', COLLECTIONS.INQUIRIES);
     const docRef = await adminDb.collection(COLLECTIONS.INQUIRIES).add(inquiryData);
+    console.log('✅ Inquiry created with ID:', docRef.id);
 
     // Increment vehicle inquiry count
-    await adminDb.collection(COLLECTIONS.VEHICLES).doc(data.vehicleId).update({
-      inquiries: (adminDb as any).FieldValue.increment(1),
-    });
+    if (data.vehicleId) {
+      console.log('📈 Incrementing vehicle inquiry count for:', data.vehicleId);
+      await adminDb.collection(COLLECTIONS.VEHICLES).doc(data.vehicleId).update({
+        inquiries: (adminDb as any).FieldValue.increment(1),
+      });
+    }
 
     revalidatePath('/admin/inquiries');
+    console.log('🎉 Inquiry creation complete!');
     return { success: true, id: docRef.id };
   } catch (error: any) {
-    console.error('Create inquiry error:', error);
+    console.error('❌ Create inquiry error:', error);
+    console.error('Error details:', error.message, error.code);
     return { success: false, error: error.message };
   }
 }
