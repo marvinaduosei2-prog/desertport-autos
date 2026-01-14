@@ -47,24 +47,38 @@ export function CategoriesSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8 sm:mb-12 md:mb-16 lg:mb-24 gap-4 sm:gap-6 lg:gap-20 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto"
+          className="mb-8 sm:mb-12 md:mb-16 lg:mb-24 px-4 sm:px-6 lg:px-20 max-w-[2200px] mx-auto"
         >
-          <motion.h2
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-black leading-[1.1] tracking-tighter lg:max-w-[50%] break-words"
+          {/* Tagline */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="flex items-center gap-3 mb-6 sm:mb-8"
           >
-            Premium <span className="text-lime-600">Collections</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-md font-light leading-relaxed lg:mt-2"
-          >
-            Explore our meticulously curated categories of the world's finest automobiles
-          </motion.p>
+            <div className="h-[1px] w-10 bg-gradient-to-r from-lime-500 to-transparent" />
+            <span className="text-lime-600 text-[10px] font-black tracking-[0.25em] uppercase">Curated Excellence</span>
+          </motion.div>
+
+          {/* Title and Subtitle */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 sm:gap-6 lg:gap-20">
+            <motion.h2
+              initial={{ opacity: 0, x: -50 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-black leading-[1.1] tracking-tighter lg:max-w-[50%] break-words"
+            >
+              Premium <span className="text-lime-600">Collections</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: 50 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 max-w-md font-light leading-relaxed lg:mt-2"
+            >
+              Explore our meticulously curated categories of the world's finest automobiles
+            </motion.p>
+          </div>
         </motion.div>
 
         {/* 2 Rows x 3 Columns Grid - ULTRA WIDE FULL SCREEN Cards */}
